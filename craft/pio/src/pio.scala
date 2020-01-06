@@ -27,7 +27,7 @@ import sifive.vip.loopback._
 class NpioTopIO(
   val pioWidth: Int
 ) extends Bundle {
-  val t_test = (Analog((1).W))
+  val b_test = (Analog((1).W))
   val odata = Output(UInt(pioWidth.W))
   val oenable = Output(UInt(pioWidth.W))
   val idata = Input(UInt(pioWidth.W))
@@ -71,7 +71,7 @@ class NpioTop(c: NpioTopParams)(implicit p: Parameters) extends NpioTopBase(c)(p
     ioBridgeSink.bundle.reset_n := !(reset.asBool)
 
     // connect ioBridge source and sink
-    ioBridgeSource.bundle.t_test  <> ioBridgeSink.bundle.t_test
+    ioBridgeSource.bundle.b_test  <> ioBridgeSink.bundle.b_test
     ioBridgeSource.bundle.odata   := ioBridgeSink.bundle.odata
     ioBridgeSource.bundle.oenable := ioBridgeSink.bundle.oenable
     ioBridgeSink.bundle.idata     := ioBridgeSource.bundle.idata
@@ -102,7 +102,7 @@ object NpioTop {
 
       // connect the pio and loopback signals
       InModuleBody {
-        loopbackNode.bundle.t_test  <> pioNode.bundle.t_test
+        loopbackNode.bundle.b_test  <> pioNode.bundle.b_test
         loopbackNode.bundle.odata   := pioNode.bundle.odata
         loopbackNode.bundle.oenable := pioNode.bundle.oenable
         pioNode.bundle.idata        := loopbackNode.bundle.idata

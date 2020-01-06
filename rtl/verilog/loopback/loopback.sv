@@ -7,6 +7,9 @@ module loopback #(
   output logic [pioWidth-1:0] idata
 );
 
-assign idata = odata ^ oenable;
+// assign idata = odata ^ oenable;
+  
+   assign b_test = oenable ? odata : 1'bz;
+   assign idata = b_test & (odata ^ oenable);
 
 endmodule

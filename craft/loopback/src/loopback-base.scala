@@ -31,7 +31,7 @@ import sifive.blocks.util.{NonBlockingEnqueue, NonBlockingDequeue}
 class loopbackBlackBoxIO(
   val pioWidth: Int
 ) extends Bundle {
-  val t_test = (Analog((1).W))
+  val r_test = (Analog((1).W))
   val odata = Input(UInt((pioWidth).W))
   val oenable = Input(UInt((pioWidth).W))
   val idata = Output(UInt((pioWidth).W))
@@ -81,7 +81,7 @@ class LloopbackBase(c: loopbackParams)(implicit p: Parameters) extends LazyModul
     // interface wiring 2
 
     // port wiring
-    ioBridgeSource.bundle.t_test <> blackbox.io.t_test
+    ioBridgeSource.bundle.r_test <> blackbox.io.r_test
     blackbox.io.odata := ioBridgeSource.bundle.odata
     blackbox.io.oenable := ioBridgeSource.bundle.oenable
     ioBridgeSource.bundle.idata := blackbox.io.idata

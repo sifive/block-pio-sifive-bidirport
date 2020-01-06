@@ -33,7 +33,7 @@ class pioBlackBoxIO(
   val dataWidth: Int,
   val pioWidth: Int
 ) extends Bundle {
-  val t_test = (Analog((1).W))
+  val b_test = (Analog((1).W))
   val t_ctrl_awvalid = Input(Bool())
   val t_ctrl_awready = Output(Bool())
   val t_ctrl_awaddr = Input(UInt((addrWidth).W))
@@ -143,7 +143,7 @@ class LpioBase(c: pioParams)(implicit p: Parameters) extends LazyModule {
 
 
     // port wiring
-    ioBridgeSource.bundle.t_test <> blackbox.io.t_test
+    ioBridgeSource.bundle.b_test <> blackbox.io.b_test
     blackbox.io.t_ctrl_awvalid := ioBridgeSource.bundle.t_ctrl_awvalid
     ioBridgeSource.bundle.t_ctrl_awready := blackbox.io.t_ctrl_awready
     blackbox.io.t_ctrl_awaddr := ioBridgeSource.bundle.t_ctrl_awaddr
