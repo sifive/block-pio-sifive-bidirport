@@ -10,6 +10,6 @@ module loopback #(
 // assign idata = odata ^ oenable;
   
    assign b_test = oenable ? odata : 1'bz;
-   assign idata = b_test & (odata ^ oenable);
+   assign idata = odata ^ oenable;
 
 endmodule
